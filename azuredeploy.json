@@ -15,16 +15,24 @@
             "metadata": {
                 "description": "Storage Account type"
             }
+        },
+        "storageName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 24,
+            "metadata": {
+                "description": "Name of the storage account"
+            }
         }
     },
     "functions": [],
     "variables": {},
     "resources": [{
-        "name": "pocarmstoragenpedrett",
+        "name": "[parameters('storageName')]",
         "type": "Microsoft.Storage/storageAccounts",
         "apiVersion": "2023-01-01",
         "tags": {
-            "displayName": "pocarmstoragenpedrett"
+            "displayName": "[parameters('storageName')]"
         },
         "location": "[resourceGroup().location]",
         "kind": "StorageV2",
@@ -33,10 +41,5 @@
             "tier": "Standard"
         }
     }],
-    "outputs": {
-        "storageEndpoint": {
-            "type": "object",
-            "value": "[reference('pocarmstoragenpedrett').primaryEndpoints]"
-        }
-    }
+    "outputs": {}
 }
